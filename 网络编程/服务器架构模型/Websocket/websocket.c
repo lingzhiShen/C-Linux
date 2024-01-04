@@ -55,7 +55,6 @@ int nty_event_add(int epfd, int events, struct ntyevent *ev)
         ev->status = 1;
     }
 
-    printf("EPOLL_CTL_MOD:%d , EPOLL_CTL_ADD:%d\n", EPOLL_CTL_MOD, EPOLL_CTL_ADD);
     printf("epoll_ctl epfd:%d , op:%d, fd:%d, events:%d\n", epfd, op, ev->fd, events);
     if (epoll_ctl(epfd, op, ev->fd, &ep_event) < 0)
     {
@@ -236,7 +235,7 @@ int websocket_transmission(struct ntyevent *ev)
     {
         payload = ev->buffer + sizeof(ws_ophdr) + sizeof(ws_head_126);
         ws_head_126 *head_126 = (ws_head_126 *)(ev->buffer + sizeof(ws_ophdr));
-        len = ntohs(head_126->ex_payload_len);  //×ö´óĞ¡¶Ë×ª»¯
+        len = ntohs(head_126->ex_payload_len);  //Ã—Ã¶Â´Ã³ÃÂ¡Â¶Ã‹Ã—ÂªÂ»Â¯
         if (hdr->mask)
         {
             masks = head_126->mask_key;
